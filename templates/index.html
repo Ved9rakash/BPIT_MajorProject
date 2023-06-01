@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Brain Tumor Detection</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<h1>Brain Tumor Detection</h1>
+		<form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="image">Select Image:</label>
+				<div class="btimg">
+				<input type="file" name="image" id="image">
+				</div>
+			</div>
+			<div class="predict">
+			<button type="submit">Detect</button>
+			</div>
+		</form>
+		{% if prediction %}
+			<img src="{{ url_for('static', filename=image) }}" alt="Image" class="imgc">
+			<div class="result"><p>Detection: {{ prediction }}</p></div>
+		{% endif %}
+	</div>
+</body>
+</html>
